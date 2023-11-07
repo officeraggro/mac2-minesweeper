@@ -16,7 +16,7 @@ const App = () => {
           <span ClassName="info">Mines: {minesLeft.current}</span>
           <br />
         </div>
-        <Board height={height} width={width} mines={mines} minesLeft={minesLeft}/>
+        <Board height={height} width={width} mines={mines} minesLeft={minesLeft} />
       </div>
     </>
   );
