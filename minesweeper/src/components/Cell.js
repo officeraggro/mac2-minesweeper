@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const Cell = ({ cellData, minesLeft }) => {
+const Cell = ({ cellData, minesLeft, flagsLeft }) => {
   const [flag, setFlag] = useState(false);
   const [reveal, setReveal] = useState(false)
 
@@ -29,8 +29,14 @@ const Cell = ({ cellData, minesLeft }) => {
   const handleContextMenu = (e, cell, x, y) => {
     e.preventDefault()
 
+    if (!cell.isFlagged && flagsLeft.current === 0) {
+      window.alert("Out of flags. You may remove flags and place them elsewhere")
+      return
+    }
+
     if (!cell.isFlagged) {
       cell.isFlagged = true;
+      flagsLeft.current = flagsLeft.current - 1
       setFlag(true);
       if (cell.isMine) {
         minesLeft.current = minesLeft.current - 1
@@ -40,6 +46,7 @@ const Cell = ({ cellData, minesLeft }) => {
         window.location.reload(false)
       }
     } else {
+      flagsLeft.current = flagsLeft.current + 1
       setFlag(false);
     }
   };

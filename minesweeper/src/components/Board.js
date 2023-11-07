@@ -2,7 +2,7 @@ import { useState, useRef } from "react"
 import Cell from "./Cell"
 
 
-const Board = ({height, width, mines, minesLeft}) => {
+const Board = ({height, width, mines, minesLeft, flagsLeft}) => {
 
     const initializeBoard = () => {
         const board = []
@@ -116,7 +116,7 @@ const Board = ({height, width, mines, minesLeft}) => {
             <div className="board-init">
                 {gameBoard.map((row, indx) => {
                     return row.map((cell, indx) => {
-                        return <Cell cellData={cell} minesLeft={minesLeft} />
+                        return <Cell cellData={cell} minesLeft={minesLeft} flagsLeft={flagsLeft} />
                     }
                 );
             })}

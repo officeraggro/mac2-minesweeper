@@ -7,6 +7,7 @@ const App = () => {
   const [width, setWidth] = useState(10)
   const [mines, setMines] = useState(10)
   const minesLeft = useRef(mines);
+  const flagsLeft = useRef(mines)
 
   return (
     <>
@@ -16,7 +17,7 @@ const App = () => {
           <span ClassName="info">Mines: {minesLeft.current}</span>
           <br />
         </div>
-        <Board height={height} width={width} mines={mines} minesLeft={minesLeft} />
+        <Board height={height} width={width} mines={mines} minesLeft={minesLeft} flagsLeft={flagsLeft} />
       </div>
     </>
   );
