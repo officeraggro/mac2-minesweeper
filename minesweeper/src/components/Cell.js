@@ -18,7 +18,9 @@ const Cell = ({ cellData, minesLeft }) => {
   };
 
 
-  const handleContextMenu = (cell, x, y) => {
+  const handleContextMenu = (e, cell, x, y) => {
+    e.preventDefault()
+
     if (!cell.isFlagged) {
       cell.isFlagged = true;
       setFlag(true);
@@ -40,7 +42,7 @@ const Cell = ({ cellData, minesLeft }) => {
         className="cell"
         onClick={(e) => handleCellClick(cellData, cellData.x, cellData.y)}
         onContextMenu={(e) =>
-          handleContextMenu(cellData, cellData.x, cellData.y)
+          handleContextMenu(e, cellData, cellData.x, cellData.y)
         }
         key={cellData.x * 10 + cellData.y}
         value={cellData}
@@ -49,7 +51,7 @@ const Cell = ({ cellData, minesLeft }) => {
 
         {cellData.isMine && <p>&#x1F4A3;</p>}
 
-        {/* {cellData.neighbor !== 0 && cellData.neighbor} */}
+        {cellData.neighbor !== 0 && cellData.neighbor}
       </div>
     </>
   );
