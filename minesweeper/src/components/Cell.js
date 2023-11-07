@@ -2,18 +2,26 @@ import { useState } from "react"
 
 const Cell = ({ cellData, minesLeft }) => {
   const [flag, setFlag] = useState(false);
+  const [reveal, setReveal] = useState(false)
 
   const handleCellClick = (cell, x, y) => {
+    
     // Check if cell is revealed. Return if true.
-
     if (cell.isRevealed || cell.isFlagged) {
       return null;
     }
 
     // Check if mine. Game over if true {
     if (cell.isMine) {
+      cell.isRevealed = true
+      setReveal(true)
       window.alert("Game over");
-      window.location.reload(false);
+
+    }
+
+    if (!cell.isRevealed) {
+      cell.isRevealed = true
+      setReveal(true)
     }
   };
 
@@ -48,10 +56,8 @@ const Cell = ({ cellData, minesLeft }) => {
         value={cellData}
       >
         {flag && <p>&#x1F6A9;</p>}
-
-        {cellData.isMine && <p>&#x1F4A3;</p>}
-
-        {cellData.neighbor !== 0 && cellData.neighbor}
+        {(cellData.isRevealed && cellData.isMine) && <p>&#x1F4A3;</p>}
+        {(cellData.isRevealed && cellData.neighbor !== 0) && cellData.neighbor}
       </div>
     </>
   );

@@ -7,6 +7,12 @@
 
 }
 
+.game-info {
+  position: fixed;
+  top: 140px;
+  left: 305px;
+}
+
 .board-init {
   display: flex;
   flex-direction: row;
@@ -26,14 +32,18 @@
   box-shadow: 3px 3px #000000;
 }
 
+.cell::after {
+  background-color: lightgray;
+}
+
 .cell:hover {
-  background-color: cornflowerblue;
+  background: cornflowerblue;
 }
 
 .cell:active {
-  background-color: coral;
+  background: coral;
 }
 
-.cell:focus {
-  background-color: white;
+.cell:visited {
+  background: lightgrey;
 }
